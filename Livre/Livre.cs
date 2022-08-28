@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-class Livre
+class Livre : IComparable<Livre>
 {
     //Attributs
     public String Editeur { get; }
@@ -34,6 +34,8 @@ class Livre
         Annee = annee;
     }
 
+
+
     //ToString
     public override String ToString()
     {
@@ -55,5 +57,26 @@ class Livre
         sb.Append(Annee);
 
         return sb.ToString();
+    }
+
+
+
+    //Comparer
+    public int CompareTo(Livre other)
+    {
+        for(int i = 0; i < other.Titre.Length || i < Titre.Length; ++i)
+        {
+            if (Titre.ElementAt(i) < other.Titre.ElementAt(i))
+                return -1;
+            else if (Titre.ElementAt(i) > other.Titre.ElementAt(i))
+                return 1;
+        }
+
+        if (Titre.Length < other.Titre.Length)
+            return -1;
+        if (Titre.Length < other.Titre.Length)
+            return 1;
+
+        return 0;
     }
 }
